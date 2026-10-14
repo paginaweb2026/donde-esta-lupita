@@ -1,0 +1,219 @@
+:root {
+    --bg: #f3f6e4;
+    --ink: #2f3a22;
+    --card: #fff;
+    --green: #5d7a2e;
+    --orange: #e8a33d;
+    --red: #d9634a;
+    --land: #eef3dc;
+    --hill: #cde3a0;
+    --river: #6bb5cf;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme:dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #1f2616;
+        --ink: #eef3dc;
+        --card: #2d3820;
+        --land: #3a4a2a;
+        --hill: #2f4120;
+        --river: #3f8aa5;
+    }
+}
+
+* {
+    box-sizing: border-box
+}
+
+html,
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fredoka', 'Trebuchet MS', system-ui, sans-serif
+}
+
+main {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 14px 14px 28px
+}
+
+h1 {
+    font-size: 2rem;
+    margin: 4px 0 2px;
+    font-weight: 700;
+    line-height: 1.1
+}
+
+.sub {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    opacity: .85
+}
+
+.stars {
+    display: flex;
+    gap: 6px;
+    font-size: 1.5rem;
+    margin-bottom: 10px
+}
+
+.stars span {
+    filter: grayscale(1);
+    opacity: .35;
+    transition: .3s
+}
+
+.stars span.on {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.15)
+}
+
+.clue {
+    background: var(--card);
+    border-left: 8px solid var(--orange);
+    border-radius: 16px;
+    padding: 12px 14px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    min-height: 84px
+}
+
+.clue small {
+    display: block;
+    font-weight: 400;
+    font-size: .95rem;
+    margin-top: 6px;
+    color: var(--red)
+}
+
+.map {
+    border: 6px solid var(--green);
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--land)
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: auto
+}
+
+.spot {
+    cursor: pointer;
+    outline: none
+}
+
+.spot circle {
+    fill: var(--card);
+    stroke: var(--green);
+    stroke-width: 2.5
+}
+
+.spot:focus-visible circle {
+    stroke: var(--red);
+    stroke-width: 4
+}
+
+.spot text.e {
+    font-size: 17px;
+    text-anchor: middle;
+    dominant-baseline: central
+}
+
+.spot text.l {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-anchor: middle;
+    fill: #2f3a22;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 3
+}
+
+.spot.no {
+    animation: shake .4s
+}
+
+.spot.hint circle {
+    animation: pulse .9s infinite
+}
+
+.spot.done circle {
+    fill: #d7efb0
+}
+
+@keyframes shake {
+    25% {
+        transform: translateX(-4px)
+    }
+
+    75% {
+        transform: translateX(4px)
+    }
+}
+
+@keyframes pulse {
+    50% {
+        stroke: var(--orange);
+        stroke-width: 6
+    }
+}
+
+.found {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 14px;
+    margin-top: 12px;
+    text-align: center;
+    display: none
+}
+
+.found.show {
+    display: block
+}
+
+.found svg {
+    width: 88px;
+    margin: 0 auto
+}
+
+.found p {
+    margin: 6px 0 10px;
+    font-size: 1.1rem
+}
+
+button {
+    font: inherit;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    background: var(--green);
+    border: 0;
+    border-radius: 999px;
+    padding: 12px 26px;
+    cursor: pointer
+}
+
+button:focus-visible {
+    outline: 3px solid var(--orange)
+}
+
+.big {
+    font-size: 1.4rem;
+    font-weight: 700
+}
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+}
